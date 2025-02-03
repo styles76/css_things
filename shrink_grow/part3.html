@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="reset.css">
+  <title>Part 3</title>
+  <style>
+    form {
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .name {
+      flex-grow: 1;
+      flex-basis: 10rem;
+    }
+
+    .email {
+      flex-grow: 3;
+      flex-basis: 8rem;
+    }
+
+    button {
+      flex-grow: 1;
+      flex-basis: 5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <form>
+    <label class="name">Name:
+      <input class="name" type="text" placeholder="Digital Nomad">
+    </label>
+    <label class="email">Email:
+      <input type="email" placeholder="codelife@jtc.omg">
+    </label>
+    <button class="button">Submit</button>
+  </form>
+
+</body>
+
+</html>

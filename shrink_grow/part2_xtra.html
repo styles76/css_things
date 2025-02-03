@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part 2 - What the flexbox!</title>
+  <style>
+    .container {
+      display: flex;
+    }
+    .box {
+      flex-basis: 358px;
+      padding: 20px;
+      background: lightblue;
+      border: 1px solid black;
+    }
+    .box:nth-child(1) { flex-shrink: 1; } /* Shrinks normally */
+    .box:nth-child(2) { flex-shrink: 2; } /* Shrinks twice as fast */
+    .box:nth-child(3) { flex-shrink: 0; } /* Doesn't shrink */
+  </style>
+</head>
+
+<body>
+  <h2><pre>flex-shrink: 2</pre></h2>
+  <h2>Does <em>not</em> mean items are half and/or double the size</h2>
+  <div class="container">
+    <div id="box1" class="box">1</div>
+    <div id="box2" class="box">2</div>
+    <div id="box3" class="box">3</div>
+  </div>
+  <pre id="stats">Ratio of Box 2 to Box 1: --</pre>
+  <script>
+    function updateWidths() {
+      const box1 = document.getElementById("box1");
+      const box2 = document.getElementById("box2");
+      const box3 = document.getElementById("box3");
+      const box1Width = box1.offsetWidth;
+      const box2Width = box2.offsetWidth;
+      const box3Width = box3.offsetWidth;
+
+      // Update the labels inside each box
+      box1.textContent = `Box 1: ${box1Width}px`;
+      box2.textContent = `Box 2: ${box2Width}px`;
+      document.getElementById("box3").textContent = `Box 3: ${document.getElementById("box3").offsetWidth}px`;
+
+      // Calculate and display the ratio (rounded to 2 decimal places)
+      document.getElementById("stats").textContent = `
+      Comparing Box 1 and Box 2
+
+      ${(box2Width / box1Width).toFixed(2)} = box2.width / box1.width
+      ${box1Width - box3Width}px = Box 1 decrease
+      ${box2Width - box3Width}px = Box 2 decrease
+      ${((box1Width - box3Width) / (box2Width - box3Width)).toFixed(2)} = box1.decrease / box2.decrease
+      `;
+    }
+
+    // Update on resize and on page load
+    window.addEventListener("resize", updateWidths);
+    updateWidths();
+  </script>
+</body>
+
+</html>
